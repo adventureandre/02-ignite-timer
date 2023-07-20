@@ -1,12 +1,13 @@
-import { Index } from '../../components/Header'
 import { Outlet } from 'react-router-dom'
-import { LayoutConteiner } from './styles.ts'
+import { Header } from '../../components/Header'
+
+import { LayoutContainer } from './styles'
 
 export function DefaultLayout() {
   return (
-    <LayoutConteiner>
-      <Index />
+    <LayoutContainer>
+      <Header />
       <Outlet />
-    </LayoutConteiner>
+    </LayoutContainer>
   )
 }
