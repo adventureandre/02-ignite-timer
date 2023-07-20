@@ -17,18 +17,12 @@ interface CyclesState {
 
 export function cyclesReducer(state: CyclesState, action: any) {
   switch (action.type) {
-    case ActionTypes.ADD_NEW_CYCLE:
-      // return {
-      //   ...state,
-      //   cycles: [...state.cycles, action.payload.newCycle],
-      //   activeCycleId: action.payload.newCycle.id,
-      // }
-
+    case ActionTypes.ADD_NEW_CYCLE: {
       return produce(state, (draft) => {
         draft.cycles.push(action.payload.newCycle)
         draft.activeCycleId = action.payload.newCycle.id
       })
-
+    }
     case ActionTypes.INTERRUPT_CURRENT_CYCLE: {
       const currenteCycleIndex = state.cycles.findIndex((cycle) => {
         return cycle.id === state.activeCycleId
@@ -44,7 +38,7 @@ export function cyclesReducer(state: CyclesState, action: any) {
       })
     }
 
-    case ActionTypes.MARK_CURRENT_CYCLE_AS_FINISHED:{
+    case ActionTypes.MARK_CURRENT_CYCLE_AS_FINISHED: {
       const currenteCycleIndex = state.cycles.findIndex((cycle) => {
         return cycle.id === state.activeCycleId
       })
@@ -58,4 +52,5 @@ export function cyclesReducer(state: CyclesState, action: any) {
         draft.cycles[currenteCycleIndex].finishedDate = new Date()
       })
     }
+  }
 }
